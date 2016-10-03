@@ -3,51 +3,53 @@ package logicaDeNegocio;
 import java.io.File;
 import java.util.*;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 /**
  * 
  */
 public class Voz extends Consulta {
 
-    /**
-     * Default constructor
-     */
-    public Voz() {
-    }
-
-    /**
-     * 
-     */
+    
     private File contenidoPregunta;
 
-    /**
-     * @param pContenidoPregunta
-     */
-    public void Voz(File pContenidoPregunta) {
-        // TODO implement here
+  
+    public Voz(File pContenidoPregunta) {
+        this.contenidoPregunta = pContenidoPregunta;
     }
 
-    /**
-     * @return
-     */
+ 
     public ArrayList<String> hacerConsulta() {
-        // TODO implement here
-        return null;
+    	Conversacion servicioConversacion = new Conversacion();
+    	return obtenerRespuestas(servicioConversacion.consultarPregunta(obtenerPreguntaTexto()));
     }
 
-    /**
-     * @return
-     */
+   
     private String convertirVozTexto() {
-        // TODO implement here
-        return "";
+        
+    	VozATexto servicioConvertirVozATexto = new VozATexto();
+    	return servicioConvertirVozATexto.convertirVozTexto(contenidoPregunta);
+       
     }
 
-    /**
-     * @return
-     */
+   
     private String obtenerPreguntaTexto() {
-        // TODO implement here
-        return "";
+     
+    	JsonElement jelement = new JsonParser().parse(convertirVozTexto());
+	    JsonObject  jobject = jelement.getAsJsonObject();
+	    
+	    JsonArray jarray = jobject.getAsJsonArray("results");
+	    jelement = jarray.get(0);
+	    jobject = jelement.getAsJsonObject();
+	    
+	    JsonArray jarray2 = jobject.getAsJsonArray("alternatives");
+	    jelement = jarray2.get(0);
+	    jobject = jelement.getAsJsonObject();
+	    String respuesta = jobject.get("transcript").toString();
+	    return respuesta;
     }
 
 }

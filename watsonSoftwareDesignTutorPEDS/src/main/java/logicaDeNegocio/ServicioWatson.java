@@ -7,20 +7,13 @@ import java.util.*;
  */
 public abstract class ServicioWatson {
 
-    /**
-     * Default constructor
-     */
-    public ServicioWatson() {
-    }
-
-    /**
-     * 
-     */
-    protected String pNombreUsuario;
-
-    /**
-     * 
-     */
-    protected String pContrasena;
-
+    
+	protected String pNombreUsuario;
+	protected String pContrasena;
+	
+	public ServicioWatson(String pNombreUsuario, String pContrasena){
+		this.pContrasena = pContrasena;
+		this.pNombreUsuario = pNombreUsuario;
+	}
+	
 }

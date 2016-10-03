@@ -60,6 +60,8 @@ public abstract class Consulta implements Traducible {
 
     public String traducirAIngles(String pTexto) {
     
-        return "";
+        Traducir servicioDeTraducir = new Traducir();
+        return servicioDeTraducir.traducirEspañolIngles(pTexto);
+    	
     }
 }

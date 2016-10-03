@@ -10,16 +10,16 @@ public interface AbstractFactoryServicios {
     /**
      * 
      */
-    public void crearServicioConversacion();
+    public Conversacion crearServicioConversacion();
 
     /**
      * 
      */
-    public void crearServicioTraducir();
+    public Traducir crearServicioTraducir();
 
     /**
      * 
      */
-    public void crearServicioVozATexto();
+    public VozATexto crearServicioVozATexto();
 
 }

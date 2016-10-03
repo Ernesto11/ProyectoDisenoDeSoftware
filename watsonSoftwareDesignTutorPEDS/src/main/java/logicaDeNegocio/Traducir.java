@@ -15,8 +15,8 @@ public class Traducir extends ServicioWatson {
 
 	LanguageTranslation servicioTraducir;
 	
-    public Traducir() {
-    	super("11e3e5eb-5665-466a-9891-b09fb25f50bb","BGIGbBhCCFgx");
+    public Traducir(String pNombreUsuario,String pContrasena) {
+    	super(pNombreUsuario, pContrasena);
     	servicioTraducir =  new LanguageTranslation();
 		servicioTraducir.setUsernameAndPassword(pNombreUsuario, pContrasena);
     }

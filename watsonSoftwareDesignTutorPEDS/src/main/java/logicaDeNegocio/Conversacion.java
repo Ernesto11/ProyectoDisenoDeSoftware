@@ -13,8 +13,8 @@ public class Conversacion extends ServicioWatson {
 
 	private ConversationService servicioConversacion;
 	
-	public Conversacion() {
-		super("8a14fea8-d65d-4a6e-b0e8-021cce7273cb","ue4A3US7D8Pr");
+	public Conversacion(String pNombreUsuario,String pContrasena) {
+		super(pNombreUsuario, pContrasena);
 		servicioConversacion =  new ConversationService(ConversationService.VERSION_DATE_2016_07_11);
 		servicioConversacion.setUsernameAndPassword(pNombreUsuario, pContrasena);
 	}

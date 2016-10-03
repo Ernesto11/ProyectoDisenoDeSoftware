@@ -17,8 +17,8 @@ public class Texto extends Consulta {
   
     public ArrayList<String> hacerConsulta() {
         
-    	Conversacion servicioConversacion = new Conversacion();
-    	return obtenerRespuestas(servicioConversacion.consultarPregunta(contenidoPregunta));
+    	FactoryServicios familiaServicios = new FactoryServicios();
+    	return obtenerRespuestas(familiaServicios.crearServicioConversacion().consultarPregunta(contenidoPregunta));
         
     }
 

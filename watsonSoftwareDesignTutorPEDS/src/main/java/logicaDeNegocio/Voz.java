@@ -23,15 +23,16 @@ public class Voz extends Consulta {
 
  
     public ArrayList<String> hacerConsulta() {
-    	Conversacion servicioConversacion = new Conversacion();
-    	return obtenerRespuestas(servicioConversacion.consultarPregunta(obtenerPreguntaTexto()));
+    	FactoryServicios familiaServicios = new FactoryServicios();
+    	return obtenerRespuestas(familiaServicios.crearServicioConversacion().consultarPregunta(obtenerPreguntaTexto()));
+        
     }
 
    
     private String convertirVozTexto() {
         
-    	VozATexto servicioConvertirVozATexto = new VozATexto();
-    	return servicioConvertirVozATexto.convertirVozTexto(contenidoPregunta);
+    	FactoryServicios familiaServicios = new FactoryServicios();
+    	return familiaServicios.crearServicioVozATexto().convertirVozTexto(contenidoPregunta);
        
     }
 

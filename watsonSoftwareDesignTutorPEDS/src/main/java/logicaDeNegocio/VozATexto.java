@@ -18,8 +18,8 @@ public class VozATexto extends ServicioWatson {
 
 	private SpeechToText servicioVozATexto;
 	
-    public VozATexto() {
-    	super("74aabeba-1f39-456b-abcb-05066b333b6a","Zfw6dHNRTivE");
+    public VozATexto(String pNombreUsuario,String pContrasena) {
+    	super(pNombreUsuario, pContrasena);
     	servicioVozATexto =  new SpeechToText();
     	servicioVozATexto.setUsernameAndPassword(pNombreUsuario, pContrasena);
     }

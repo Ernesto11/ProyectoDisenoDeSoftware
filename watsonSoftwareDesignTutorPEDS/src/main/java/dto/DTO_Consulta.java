@@ -7,61 +7,36 @@ import java.util.*;
  */
 public class DTO_Consulta {
 
-    /**
-     * Default constructor
-     */
-    public DTO_Consulta() {
-    }
 
-    /**
-     * 
-     */
     private String pregunta;
-
-    /**
-     * 
-     */
     private ArrayList<String> respuestas;
 
-    /**
-     * 
-     */
-    public void DTO_Consulta() {
-        // TODO implement here
+    public DTO_Consulta() {
+        
+    	respuestas = new ArrayList<String>();
     }
 
-    /**
-     * @param pPregunta 
-     * @return
-     */
     public void setPregunta(String pPregunta) {
-        // TODO implement here
+        this.pregunta = pPregunta;
 
     }
 
-    /**
-     * @param pRespuesta 
-     * @return
-     */
     public void setRespuesta(String pRespuesta) {
-        // TODO implement here
+        respuestas.add(pRespuesta);
 
     }
 
-    /**
-     * @return
-     */
     public ArrayList<String> getRespuesta() {
-        // TODO implement here
-        return null;
+       
+        return this.respuestas;
     }
 
     /**
      * @return
      */
     public String getPregunta() {
-        // TODO implement here
-        return "";
+        
+        return this.pregunta;
     }
 
 }

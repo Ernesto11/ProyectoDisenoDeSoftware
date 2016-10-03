@@ -7,83 +7,43 @@ import java.util.*;
  */
 public class DTO_Documento {
 
-    /**
-     * Default constructor
-     */
-    public DTO_Documento() {
-    }
-
-    /**
-     * 
-     */
+  
     private String fuenteDeDatos;
-
-    /**
-     * 
-     */
     private String rutaGuardado;
-
-    /**
-     * 
-     */
     private String contenido;
 
-    /**
-     * 
-     */
-    public void DTO_Documento() {
-        // TODO implement here
-    }
-
-    /**
-     * @param pFuenteDeDatos 
-     * @return
-     */
-    public void setFuenteDeDatos(String pFuenteDeDatos) {
-        // TODO implement here
+    public DTO_Documento() {
         
     }
 
-    /**
-     * @param pRutaGuardado 
-     * @return
-     */
+    public void setFuenteDeDatos(String pFuenteDeDatos) {
+        this.fuenteDeDatos = pFuenteDeDatos;
+        
+    }
+
     public void setRutaGuardado(String pRutaGuardado) {
-        // TODO implement here
+       this.rutaGuardado = pRutaGuardado;
 
     }
 
-    /**
-     * @param pContenido 
-     * @return
-     */
     public void setContenido(String pContenido) {
-        // TODO implement here
+       this.contenido = pContenido;
 
     }
 
-    /**
-     * @return
-     */
     public String getFuenteDeDatos() {
-        // TODO implement here
-        return "";
+        
+        return this.fuenteDeDatos;
     }
 
-    /**
-     * @return
-     */
     public String getRutaGuardado() {
-        // TODO implement here
-        return "";
+        
+        return this.rutaGuardado;
     }
 
-    /**
-     * @return
-     */
     public String getContenido() {
-        // TODO implement here
-        return "";
+        
+        return this.contenido;
     }
 
 }

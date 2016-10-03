@@ -13,18 +13,15 @@ public class FactoryConsulta implements AbstractFactoryConsulta {
     public FactoryConsulta() {
     }
 
-    /**
-     * @param pObjetoDTO
-     */
-    public void crearConsultaPorVoz(DTO_Consulta pObjetoDTO) {
-        // TODO implement here
+    public Voz crearConsultaPorVoz(DTO_Consulta pObjetoDTO) {
+    	Voz nuevaConsultaPorVoz = new Voz(pObjetoDTO.getPreguntaVoz());
+    	return nuevaConsultaPorVoz;
     }
 
-    /**
-     * @param pObjetoDTO
-     */
-    public void crearConsultaPorTexto(DTO_Consulta pObjetoDTO) {
-        // TODO implement here
+    public Texto crearConsultaPorTexto(DTO_Consulta pObjetoDTO) {
+    	Texto nuevaConsultaPorTexto = new Texto(pObjetoDTO.getPreguntaTexto());
+    	nuevaConsultaPorTexto.setContenidoPregunta(pObjetoDTO.getPreguntaTexto());
+    	return nuevaConsultaPorTexto;
     }
 
 }

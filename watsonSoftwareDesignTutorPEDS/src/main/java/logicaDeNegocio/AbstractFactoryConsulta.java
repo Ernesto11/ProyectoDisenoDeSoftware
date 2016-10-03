@@ -12,11 +12,12 @@ public interface AbstractFactoryConsulta {
     /**
      * @param pObjetoDTO
      */
-    public abstract void crearConsultaPorVoz(DTO_Consulta pObjetoDTO);
+    public abstract Voz crearConsultaPorVoz(DTO_Consulta pObjetoDTO);
 
     /**
      * @param pObjetoDTO
+     * @return 
      */
-    public abstract void crearConsultaPorTexto(DTO_Consulta pObjetoDTO);
+    public abstract Texto crearConsultaPorTexto(DTO_Consulta pObjetoDTO);
 
 }

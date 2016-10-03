@@ -2,78 +2,64 @@ package logicaDeNegocio;
 
 import java.util.*;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 /**
  * 
  */
 public abstract class Consulta implements Traducible {
 
-    /**
-     * Default constructor
-     */
-    public Consulta() {
-    }
-
-    /**
-     * 
-     */
+    
+	
     protected ArrayList<String> contenidoRespuestas;
-
-    /**
-     * 
-     */
     protected String contenidoPregunta;
-
-    /**
-     * 
-     */
     protected boolean estadoRespuesta;
 
-    /**
-     * 
-     */
-    public void Consulta() {
-        // TODO implement here
+    public Consulta() {
+    
+       contenidoRespuestas = new ArrayList<String>();
     }
 
-    /**
-     * @return
-     */
+   
     public abstract ArrayList<String> hacerConsulta();
 
-    /**
-     * @param pRespuestaJSON 
-     * @return
-     */
+   
     public ArrayList<String> obtenerRespuestas(String pRespuestaJSON) {
-        // TODO implement here
-        return null;
+  
+    	
+    	JsonElement jelement = new JsonParser().parse(pRespuestaJSON);
+	    JsonObject  jobject = jelement.getAsJsonObject();
+	    
+	    jelement = jobject.get("output");
+	    jobject = jelement.getAsJsonObject();
+	    
+	    JsonArray listaRespuestasObtenidas = jobject.getAsJsonArray("text");
+    	
+	    for (int contador=0; contador<listaRespuestasObtenidas.size();contador++){
+	    	
+	    	contenidoRespuestas.add(listaRespuestasObtenidas.get(contador).toString());
+	    }
+	    return contenidoRespuestas;
     }
 
-    /**
-     * @param pContenidoPregunta 
-     * @return
-     */
+    
     public void setContenidoPregunta(String pContenidoPregunta) {
-        // TODO implement here
+        
+    	this.contenidoPregunta = pContenidoPregunta;
        
     }
 
-    /**
-     * @return
-     */
+   
     public String getContenidoPregunta() {
-        // TODO implement here
-        return "";
+        
+        return this.contenidoPregunta;
     }
 
-    /**
-     * @param pTexto 
-     * @return
-     */
     public String traducirAIngles(String pTexto) {
-        // TODO implement here
+    
         return "";
     }
-
-
 }

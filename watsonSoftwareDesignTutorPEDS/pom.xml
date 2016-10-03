@@ -43,11 +43,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-        	<groupId>biz.paluch.redis</groupId>
-        	<artifactId>lettuce</artifactId>
-        	<version>3.2.Final</version>
-        </dependency>
-        <dependency>
         	<groupId>com.ibm.watson.developer_cloud</groupId>
         	<artifactId>java-sdk</artifactId>
         	<version>3.3.0</version>
@@ -56,6 +51,18 @@
         	<groupId>com.itextpdf</groupId>
         	<artifactId>itextpdf</artifactId>
         	<version>5.5.9</version>
+        </dependency>
+        <dependency>
+        	<groupId>biz.paluch.redis</groupId>
+        	<artifactId>lettuce</artifactId>
+        	<version>3.2.Final</version>
+        </dependency>
+        <dependency>
+        	<groupId>redis.clients</groupId>
+        	<artifactId>jedis</artifactId>
+            <version>2.6.2</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

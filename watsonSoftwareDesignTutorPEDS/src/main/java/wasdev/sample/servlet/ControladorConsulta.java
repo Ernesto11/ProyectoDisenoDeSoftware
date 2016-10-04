@@ -1,9 +1,11 @@
 package wasdev.sample.servlet;
 
-
 import java.io.IOException;
+import java.util.ArrayList;
 
+import dto.DTO_Consulta;
 import dto.DTO_Registro;
+import logicaDeNegocio.FactoryConsulta;
 import logicaDeNegocio.FactoryRegistro;
 
 import javax.servlet.RequestDispatcher;
@@ -16,45 +18,38 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 
  */
-/**
- * Servlet implementation class ServletConsulta
- */
-@WebServlet(name = "ControladorRegistro", urlPatterns = {"/ControladorRegistro"})
-public class ControladorRegistro extends HttpServlet {
+@WebServlet(name = "ControladorConsulta", urlPatterns = {"/ControladorConsulta"})
+public class ControladorConsulta extends HttpServlet  {
+	
 	private static final long serialVersionUID = 1L;
-	FactoryRegistro registro;    
+	FactoryConsulta consulta;
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor
      */
-    public ControladorRegistro() {
+    public ControladorConsulta() {
         super();
-        registro = new FactoryRegistro(); 
+        consulta = new FactoryConsulta(); 
         // TODO Auto-generated constructor stub
     }
     
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
     	String pregunta = request.getParameter("pregunta").toString();
-    	String categoria = request.getParameter("tipo").toString();
-    	String[] respuestas = request.getParameterValues("respuestas");
-    	
-    	if(pregunta =="" || respuestas ==null)
+    	if(pregunta =="")
     	{
     		RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
             dispatcher.forward( request, response );
     	}
-    	else{
-    		DTO_Registro nuevoRegistro = new DTO_Registro();
-    		nuevoRegistro.setCategoria(categoria);
-    		nuevoRegistro.setPregunta(pregunta);
-    		nuevoRegistro.setRespuesta(respuestas);
-    		registro.crearRegistro(nuevoRegistro).realizarRegistro();
-            request.setAttribute("DTO_Registro", nuevoRegistro);
-            request.getRequestDispatcher("respuestaRegistro.jsp").forward(request, response);
-    		
+    	else
+    	{
+    		DTO_Consulta consulta = new DTO_Consulta();
+    		consulta.setPreguntaTexto(pregunta);
+    		FactoryConsulta familiaConsulta = new FactoryConsulta();
+    		ArrayList<String> respuestas =  familiaConsulta.crearConsultaPorTexto(consulta).hacerConsulta();
+    		consulta.setRespuestas(respuestas);
+            request.setAttribute("DTO_Consulta", consulta);
+            request.getRequestDispatcher("respuestaConsulta.jsp").forward(request, response);
     	}
-
-    	
     }
     
 
@@ -90,3 +85,5 @@ public class ControladorRegistro extends HttpServlet {
     }// </editor-fold
 
 }
+
+

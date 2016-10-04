@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,30 +26,32 @@
     </div>
         <div class="contentBox">
     	<div class="innerBox">
-    	  <form name="form"  action="ControladorConsulta"  method="post" >
-    	    <p><br>
-            </p>
-    	    <p>Ingrese la pregunta: </p><br>
-            <p>
-             <input type="text" id="pregunta" name="pregunta" size="79" maxlength="100" class="form-control" placeholder="pregunta"><br><br>
-    	    <p>
-    	    <input type="submit" value="Consultar"><br><br>                                           
+    	  <form name="form">
+    	  <jsp:useBean id="DTO_Consulta" scope="request" class="dto.DTO_Consulta" />
+    	  <%
+    	  String pregunta = DTO_Consulta.getPreguntaTexto();
+    	  %>
+    	  Pregunta Realizada: <input name="name" value="<%=pregunta%>" size="50" type="text" readonly><br><br>
+    	  <label>Respuestas:</label><br>
+    	  
+    	 <%
+            ArrayList<String> respuestas = DTO_Consulta.getRespuestas();
+    	    String respuesta = "";
+    	    for(int i = 0; i<respuestas.size();i++)
+    	    {
+    	    	respuesta += i+1+"- "+respuestas.get(i)+"\n";
+    	    }
+        %>
+    	  
+          <textarea name="area_respuestas"  cols="70" rows="5" readonly><%=respuesta%></textarea>
+
     	  </form>
  
     	  <div id="footer">Tutor Cognitivo</div>
 <!-- Please leave this in place after all of your content - thanks :) -->
-        
-        
-        
-
+ 
         
         </div>
-
-
-
-
-
-
     </div>
         
 </body>

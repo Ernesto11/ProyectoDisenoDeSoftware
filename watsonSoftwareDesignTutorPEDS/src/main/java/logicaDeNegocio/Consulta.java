@@ -37,10 +37,16 @@ public abstract class Consulta implements Traducible {
 	    jobject = jelement.getAsJsonObject();
 	    
 	    JsonArray listaRespuestasObtenidas = jobject.getAsJsonArray("text");
-    	
-	    for (int contador=0; contador<listaRespuestasObtenidas.size();contador++){
-	    	
-	    	contenidoRespuestas.add(listaRespuestasObtenidas.get(contador).toString());
+	    
+	    if(listaRespuestasObtenidas.size() != 0){
+	    	for (int contador=0; contador<listaRespuestasObtenidas.size();contador++)
+	    	{
+	    		contenidoRespuestas.add(listaRespuestasObtenidas.get(contador).toString());
+	    	}
+	    }
+	    else
+	    {
+	    	contenidoRespuestas.add("No se encontro ninguna respuesta para esa pregunta.");
 	    }
 	    return contenidoRespuestas;
     }

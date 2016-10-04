@@ -47,7 +47,7 @@ public class ControladorRegistro extends HttpServlet {
     		DTO_Registro nuevoRegistro = new DTO_Registro();
     		nuevoRegistro.setCategoria(categoria);
     		nuevoRegistro.setPregunta(pregunta);
-    		nuevoRegistro.setRespuesta(respuestas);
+    		nuevoRegistro.setRespuestas(respuestas);
     		registro.crearRegistro(nuevoRegistro).realizarRegistro();
             request.setAttribute("DTO_Registro", nuevoRegistro);
             request.getRequestDispatcher("respuestaRegistro.jsp").forward(request, response);

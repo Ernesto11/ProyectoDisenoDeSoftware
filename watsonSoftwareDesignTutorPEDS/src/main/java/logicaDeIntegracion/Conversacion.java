@@ -1,6 +1,5 @@
-package logicaDeNegocio;
+package logicaDeIntegracion;
 
-import java.util.*;
 
 import com.ibm.watson.developer_cloud.conversation.v1.ConversationService;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageRequest;

@@ -1,6 +1,5 @@
 package logicaDeNegocio;
 
-import java.util.*;
 
 import dto.DTO_Consulta;
 

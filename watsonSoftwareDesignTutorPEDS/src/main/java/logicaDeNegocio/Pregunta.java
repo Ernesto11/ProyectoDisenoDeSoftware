@@ -34,15 +34,16 @@ public class Pregunta {
      * @param pCategoría
      */
     public void Pregunta(String pContenidoPregunta, String pCategoría) {
-        // TODO implement here
+        this.contenidoPregunta = pContenidoPregunta;
+        this.categoria = pCategoría;
     }
 
     /**
      * @param pContenidoRespuesta 
      * @return
      */
-    public void registrarRespuesta(String pContenidoRespuesta) {
-        // TODO implement here
+    public void registrarRespuesta(Respuesta pContenidoRespuesta) {
+        respuestas.add(pContenidoRespuesta);
     }
 
 }

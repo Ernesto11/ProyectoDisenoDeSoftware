@@ -1,7 +1,5 @@
 package logicaDeNegocio;
 
-import java.util.*;
-
 /**
  * 
  */
@@ -23,7 +21,7 @@ public class Respuesta {
      * @param pContenidoRespuesta
      */
     public void Respuesta(String pContenidoRespuesta) {
-        // TODO implement here
+        this.contenidoRespuesta = pContenidoRespuesta;
     }
 
 }

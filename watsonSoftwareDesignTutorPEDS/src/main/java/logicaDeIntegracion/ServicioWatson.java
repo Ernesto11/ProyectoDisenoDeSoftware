@@ -1,6 +1,4 @@
-package logicaDeNegocio;
-
-import java.util.*;
+package logicaDeIntegracion;
 
 /**
  * 

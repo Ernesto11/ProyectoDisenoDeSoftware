@@ -1,6 +1,5 @@
-package logicaDeNegocio;
+package logicaDeIntegracion;
 
-import java.util.*;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

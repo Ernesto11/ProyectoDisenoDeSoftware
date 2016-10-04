@@ -1,6 +1,10 @@
 package logicaDeNegocio;
 
-import java.util.*;
+
+
+import logicaDeIntegracion.Conversacion;
+import logicaDeIntegracion.Traducir;
+import logicaDeIntegracion.VozATexto;
 
 /**
  * 

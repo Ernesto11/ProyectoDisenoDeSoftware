@@ -9,6 +9,10 @@ import java.util.*;
  */
 public class DTO_Consulta implements Serializable {
 
+	/**
+	 * 
+	 */
+
 	private File preguntaVoz;
     private String preguntaTexto;
     private ArrayList<String> respuestas;

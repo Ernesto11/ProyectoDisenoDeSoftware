@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import dto.DTO_Consulta;
-import dto.DTO_Registro;
 import logicaDeNegocio.FactoryConsulta;
-import logicaDeNegocio.FactoryRegistro;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -32,6 +32,11 @@
                 <groupId>org.apache.geronimo.specs</groupId>
                 <artifactId>geronimo-servlet_3.0_spec</artifactId>
                 <version>1.0</version>
+            </dependency>   
+            <dependency>
+        	     <groupId>com.google.code.gson</groupId>
+        	     <artifactId>gson</artifactId>
+               	<version>2.2.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -48,26 +53,14 @@
         	<version>3.3.0</version>
         </dependency>
         <dependency>
+        	<groupId>redis.clients</groupId>
+        	<artifactId>jedis</artifactId>
+        	<version>2.6.2</version>
+        </dependency>
+        <dependency>
         	<groupId>com.itextpdf</groupId>
         	<artifactId>itextpdf</artifactId>
         	<version>5.5.9</version>
-        </dependency>
-        <dependency>
-        	<groupId>biz.paluch.redis</groupId>
-        	<artifactId>lettuce</artifactId>
-        	<version>3.2.Final</version>
-        </dependency>
-        <dependency>
-        	<groupId>redis.clients</groupId>
-        	<artifactId>jedis</artifactId>
-            <version>2.6.2</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-        	<groupId>com.google.code.gson</groupId>
-        	<artifactId>gson</artifactId>
-        	<version>2.2.2</version>
         </dependency>
     </dependencies>
 

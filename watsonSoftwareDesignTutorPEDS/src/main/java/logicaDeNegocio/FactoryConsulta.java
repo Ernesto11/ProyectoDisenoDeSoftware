@@ -9,7 +9,8 @@ import dto.DTO_Consulta;
  */
 public class FactoryConsulta implements AbstractFactoryConsulta {
 
-    
+	
+	
     public FactoryConsulta() {
     }
 

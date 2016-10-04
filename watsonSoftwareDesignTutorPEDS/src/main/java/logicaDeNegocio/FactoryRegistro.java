@@ -21,9 +21,7 @@ public class FactoryRegistro implements AbstractFactoryRegistro {
      * @return
      */
     public Registro crearRegistro(DTO_Registro pRegistro) {
-        Registro nuevoRegistro = new Registro(pRegistro.getCategoria());
-        nuevoRegistro.registrarPregunta(pRegistro.getPregunta());
-        nuevoRegistro.registrarRespuestas(pRegistro.getRespuestas());
+        Registro nuevoRegistro = new Registro(pRegistro.getCategoria(),pRegistro.getPregunta(),pRegistro.getRespuestas());
         return nuevoRegistro;
     }
 

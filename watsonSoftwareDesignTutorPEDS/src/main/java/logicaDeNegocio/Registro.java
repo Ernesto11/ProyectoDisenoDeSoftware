@@ -2,45 +2,30 @@ package logicaDeNegocio;
 
 import java.util.*;
 
+import enlaceDeDatos.BaseDatos;
+
 /**
  * 
  */
 public class Registro {
 	
     private String pregunta;
-    private ArrayList<String> respuestas;
+    private String[] respuestas;
     private String categoriaPregunta;
 	
 
 	
-    public Registro(String pCategoria) 
+    public Registro(String pCategoriaPregunta,String pPregunta, String[] pRespuestas ) 
     {
-    	categoriaPregunta = pCategoria;
+    	categoriaPregunta = pCategoriaPregunta;
+    	pregunta = pPregunta;
+    	respuestas = pRespuestas;
     }
-
-    /**
-     * @param pCategoria
-     */
-    public void registrarRespuestas(ArrayList<String> pRespuestas) {
-        respuestas = pRespuestas;
-    }
-
-    /**
-     * @param pPregunta 
-     * @return
-     */
-    public void registrarPregunta(String pPregunta) {
-        pregunta = pPregunta;
-        
-    }
-
-    /**
-     * @param pContenidoRespuesta 
-     * @return
-     */
-    public void registrarRespuestas(String pContenidoRespuesta) {
-        // TODO implement here
-
+    
+    public void realizarRegistro()
+    {
+    	BaseDatos registrar = new BaseDatos();
+    	registrar.insertarDatos(categoriaPregunta, pregunta, respuestas);
     }
 
 }

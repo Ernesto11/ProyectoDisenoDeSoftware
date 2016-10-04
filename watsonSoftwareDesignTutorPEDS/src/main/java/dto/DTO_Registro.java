@@ -1,20 +1,21 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * 
  */
-public class DTO_Registro {
+public class DTO_Registro implements Serializable{
 
     
     private String pregunta;
-    private ArrayList<String> respuestas;
+    private String[] respuestas;
     private String categoria;
 
 
     public DTO_Registro() {
-        respuestas = new ArrayList<String>();
+
     }
 
     
@@ -28,9 +29,9 @@ public class DTO_Registro {
         
     }
 
-    public void setRespuesta(String pRespuesta) {
+    public void setRespuesta(String[] pRespuestas) {
         
-        respuestas.add(pRespuesta);
+        respuestas = pRespuestas;
     }
 
     
@@ -44,7 +45,7 @@ public class DTO_Registro {
         return this.categoria;
     }
 
-    public ArrayList<String> getRespuestas() {
+    public String[] getRespuestas() {
         
         return this.respuestas;
     }

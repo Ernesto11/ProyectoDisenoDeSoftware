@@ -31,7 +31,7 @@ public class ServletConsultaTexto extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SolrServerException
+    public void procesarRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SolrServerException
     {
     	String pregunta = request.getParameter("pregunta");
     	DTO_Consulta nuevaConsulta = new DTO_Consulta();
@@ -56,7 +56,7 @@ public class ServletConsultaTexto extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		 try {
-			processRequest(request, response);
+			procesarRequest(request, response);
 		} catch (SolrServerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class ServletConsultaTexto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		 try {
-			processRequest(request, response);
+			procesarRequest(request, response);
 		} catch (SolrServerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

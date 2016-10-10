@@ -17,7 +17,7 @@
         <div class="topNaviagationLink"><a href="index.jsp">Principal</div>
         <div class="topNaviagationLink"><a href="registrar.jsp">Registrar</div>
       <div class="topNaviagationLink"><a href="consultar.jsp">Consultar</div>
-        <div class="topNaviagationLink"><a href="index.html">Catalogo</a></div>
+        <div class="topNaviagationLink"><a href="catalogo.jsp">Catalogo</a></div>
 </div>
     <div id="mainPicture">
     	<div class="picture"></div>

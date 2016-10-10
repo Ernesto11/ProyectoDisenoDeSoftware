@@ -28,37 +28,42 @@ import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrInputDocument;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.ibm.watson.developer_cloud.retrieve_and_rank.v1.RetrieveAndRank;
 
+
+/**
+ * Clase que se encarga de conectarse con el servicio de watson RetrieveAndRank.
+ * Registra documentos y realizar consultas a esos documentos.
+ * @author PEDS
+ * @version 1.0
+ */
 
 public class Conversacion implements IConversacion {
 	
 	   private static final String NOMBREUSUARIO = "dcc5c372-f424-4e2e-8e62-4bb3a22d7e5a";
 	   private static final String CONTRASENA = "cwZEYKZL7CyR";
-	    private static final String CLUSTERNAME = "WATSONTUTORDISENO"; //puede ser directa
+	    private static final String NOMBRECLUSTER = "WATSONTUTORDISENO";
 	    private static final String CLUSTERID = "sc26b9c1af_fa9b_4aa2_9e50_7def90c67f9f";
 
-	   private static final String CONFIGURATIONNAME = "WATSONTUTOR";
-	   private static final String COLLECTIONNAME = "WATSONTUTORDISENO";
-	   private static RetrieveAndRank service;
-	   private static SolrClient solrClient;
+	   private static final String NOMBRECONFIGURACION = "WATSONTUTOR";
+	   private static final String NOMBRECOLECCION = "WATSONTUTORDISENO";
+	   private static RetrieveAndRank servicio;
+	   private static SolrClient clienteSolr;
 	   
 	   
-	   //Constructor de la clase.
+	   /**
+	    * Constructor de la clase.
+	    */
 	   public Conversacion()
 	   {
-		   service = new RetrieveAndRank();
-		   service.setUsernameAndPassword(NOMBREUSUARIO, CONTRASENA);
+		   servicio = new RetrieveAndRank();
+		   servicio.setUsernameAndPassword(NOMBREUSUARIO, CONTRASENA);
 	   }
 	   
 
 	   private static HttpSolrClient getSolrClient(String uri)
 	   {
-			return new HttpSolrClient(service.getSolrUrl(CLUSTERID), createHttpClient(uri));
+			return new HttpSolrClient(servicio.getSolrUrl(CLUSTERID), createHttpClient(uri));
 	   }
 
 	   private static HttpClient createHttpClient(String uri) {
@@ -94,38 +99,36 @@ public class Conversacion implements IConversacion {
 	      }
 	    
 	    
-	    public void registrarPregunta(String pPregunta, String pRespuesta) throws SolrServerException, IOException {
-
-
-	    	solrClient = Conversacion.getSolrClient(service.getSolrUrl(CLUSTERID));
-
-
+	  /**
+	   * Registra un documento que contiene una pregunta y respuesta en la colección del servicio de watson.
+	   */
+	    public void registrarPreguntaRespuesta(String pPregunta, String pRespuesta) throws SolrServerException, IOException {
+	    	clienteSolr = Conversacion.getSolrClient(servicio.getSolrUrl(CLUSTERID));
 	    	SolrInputDocument document = new SolrInputDocument();
 	    	document.addField("id", pPregunta);
 	    	document.addField("author", "Watson Tutor: Curso Diseño Software");
 	    	document.addField("body", pRespuesta);
 	    	document.addField("title",pPregunta );
-
-
-	    	UpdateResponse addResponse = solrClient.add("WATSONTUTORDISENO", document);
-
-	    	solrClient.commit("WATSONTUTORDISENO");
-
+	    	UpdateResponse addResponse = clienteSolr.add(NOMBRECOLECCION, document);
+	    	clienteSolr.commit(NOMBRECOLECCION);
 	     }
+	    
+	    
+	    /**
+	     * Consulta una pregunta en un documento que se encuentra en la colección.
+	     * @param pPregunta
+	     * @return ArrayList<String> contiene los documentos relacionados con la pregunta. 
+	     */
 	    
 	    public ArrayList<String> consultarPregunta(String pPregunta) throws SolrServerException, IOException{
 	    	ArrayList<String> respuestas = new ArrayList<String>();
 	    	
-	    	solrClient = Conversacion.getSolrClient(service.getSolrUrl(CLUSTERID));
+	    	clienteSolr = Conversacion.getSolrClient(servicio.getSolrUrl(CLUSTERID));
 
 	    	SolrQuery query = new SolrQuery(pPregunta);
 	    	
-	    	QueryResponse response = solrClient.query("WATSONTUTORDISENO", query);
+	    	QueryResponse response = clienteSolr.query(NOMBRECOLECCION, query);
 	    	
-	    	String  p = response.toString();
-	    	
-
-
 	    	for(int i= 0; i< response.getResults().size(); i++){
 	    		respuestas.add(response.getResults().get(i).get("body").toString().replace("[", "").replace("]", ""));
 	    	}

@@ -10,7 +10,14 @@ import enlaceDeDatos.ConexionBaseDatosRedis;
 import logicaDeIntegracion.FactoryConversacion;
 
 /**
+ * Clase Pregunta
  * 
+ * Contiene los datos de los atributos de una pregunta, así como su respuesta asociada.
+ * Se encarga de entrenar el servicio de watson.
+ * Realiza la prsistencia de datos.
+ * 
+ * @author PEDS
+ * @version 1.0
  */
 public class Pregunta {
 	
@@ -19,7 +26,8 @@ public class Pregunta {
 	private Respuesta respuesta;
 
     /**
-     * Default constructor
+     * Contructor de la clase
+     * @param DTO_Pregunta objeto de transferencia de datos.
      */
     public Pregunta(DTO_Pregunta DTO_nuevaPregunta) 
     {
@@ -29,21 +37,37 @@ public class Pregunta {
     	
     }
     
+    /**
+     * Registra la pregunta con su respuesta asociada.
+     * El registro se realiza en una base de datos y se encarga de entrenar el servicio de watson.
+     * @throws SolrServerException
+     * @throws IOException
+     */
     public void registrarPreguntaRespuesta() throws SolrServerException, IOException{
-    	registrarBaseDatosRedis();
-    	registrarEnWatson(); 
+    	registrarBaseDatosRedis(); //Registra en la base  de datos.
+    	registrarEnWatson();  // Entrena el servicio de watson.
     }
     
-    public void registrarBaseDatosRedis()
+    /**
+     * Registra la pregunta en una base de datos Redis.
+     */
+    private void registrarBaseDatosRedis()
     {
     	ConexionBaseDatosRedis registrar = new ConexionBaseDatosRedis();
     	registrar.insertarDatos(categoriaPregunta, pregunta, respuesta.getRespuesta());
 
     }
     
-    public void registrarEnWatson() throws SolrServerException, IOException
+    /**
+     * Registra la pregunta en Watson para el proceso de entrenamiento.
+     * @throws SolrServerException
+     * @throws IOException
+     */
+    
+    
+    private void registrarEnWatson() throws SolrServerException, IOException
     {
-    	FactoryConversacion.crearConversacion().registrarPregunta(pregunta, respuesta.getRespuesta());
+    	FactoryConversacion.crearConversacion().registrarPreguntaRespuesta(pregunta, respuesta.getRespuesta());
     }
     
 

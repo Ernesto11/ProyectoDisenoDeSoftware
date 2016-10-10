@@ -2,20 +2,23 @@ package logicaDeNegocio;
 
 import java.util.*;
 
-import logicaDeIntegracion.FactoryTraductor;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
+import enlaceDeDatos.ConexionBaseDatosRedis;
 
 /**
- * 
+ * Clase Consulta.
+ * Consume los servicios de watson.
+ * @author PEDS
+ * @version 1.0
  */
-public abstract class Consulta implements Traducible {
+public abstract class Consulta {
 
     
 	
+	/**
+	 * Atributos de la clase.
+	 */
     protected ArrayList<String> contenidoRespuestas;
     protected String contenidoPreguntaTexto;
     protected boolean estadoRespuesta;
@@ -25,11 +28,30 @@ public abstract class Consulta implements Traducible {
        contenidoRespuestas = new ArrayList<String>();
     }
 
-   
+   /**
+    * Metodo abstracto, que difiere del tipo de consulta, sea por voz o texto.
+    * @return ArrayList con el contenido de las respuestas.
+    */
     public abstract ArrayList<String> hacerConsulta();
 
-   
+ 
+    /**
+     * Obtiene los datos registrados para una categoria: UML, Principios de diseño, POO.
+     * @param pCategoria
+     * @return ArrayList datos de una categoria.
+     */
+    public  ArrayList<String> obtenerDatosCategoria(String pCategoria)
+    {
+    	ConexionBaseDatosRedis obtenerDatos = new ConexionBaseDatosRedis();
+    	return obtenerDatos.obtenerDatos(pCategoria);
+    	
+    }
+    
+    
 
+    /**
+     * Getter and setters
+     */
     
     public void setContenidoPregunta(String pContenidoPregunta) {
         
@@ -43,8 +65,4 @@ public abstract class Consulta implements Traducible {
         return this.contenidoPreguntaTexto;
     }
 
-    public String traducirAIngles(String pTexto) {  
-        return FactoryTraductor.crearTraductor().traducirEspañolIngles(pTexto);
-    	
-    }
 }

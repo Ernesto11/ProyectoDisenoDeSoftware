@@ -33,8 +33,8 @@ public class ServletTraducir extends HttpServlet {
     	String pregunta = request.getParameter("pregunta");
     	String respuestas =  request.getParameter("respuestas");
     	
-    	String preguntaIngles = ControladorWeb.solicitudTraducir(pregunta);
-    	String respuestaIngles = ControladorWeb.solicitudTraducir(respuestas);
+    	String preguntaIngles = ControladorWeb.solicitudTraducirAIngles(pregunta);
+    	String respuestaIngles = ControladorWeb.solicitudTraducirAIngles(respuestas);
     	
  	    DTO_Consulta nuevaConsulta = new DTO_Consulta();
     	

@@ -22,10 +22,7 @@ import logicaDeNegocio.Pregunta;
 
 public class ControladorWeb {
 
-	/*public Registro solicitudCrearRegistro()
-	{
-		
-	}*/
+
 	
 	/**	 * Permite crear un objeto de tipo Documento, enviando el objeto DTO_nuevoDocumento a la
 	 * fábrica encargada de crear dicho documento.
@@ -39,15 +36,29 @@ public class ControladorWeb {
 	}
 	
 	
-	
+	/**	Permite realizar un nuevo registro de una pregunta y su respuesta, enviando el objeto DTO_nuevaPregunta a la
+	 * fábrica encargada de crear la pregunta..
+	 * @param DTO_nuevaPregunta contiene los datos necesarios para crear una pregunta.
+	 */	
 	public static void solicitudRealizarRegistro(DTO_Pregunta DTO_nuevaPregunta) throws SolrServerException, IOException
 	{
 		solicitudCrearPregunta(DTO_nuevaPregunta).registrarPreguntaRespuesta();
 	}
 	
+	/**
+	 * Permite crear una nueva pregunta, enviando el objeto DTO_nuevaPregunta a la fabrica encargada de crear la pregunta.
+	 * @param DTO_nuevaPregunta
+	 * @return Pregunta
+	 */
 	private static Pregunta solicitudCrearPregunta(DTO_Pregunta DTO_nuevaPregunta){
 		return FactoryPregunta.crearPregunta(DTO_nuevaPregunta);
 	}
+	
+	/**
+	 * 
+	 * @param DTO_nuevaConsulta
+	 * @return
+	 */
 	
 	public static Consulta crearConsulta(DTO_Consulta DTO_nuevaConsulta)
 	{
@@ -56,10 +67,15 @@ public class ControladorWeb {
 
 	}
 	
-	public static String solicitudTraducir(String pTexto)
+	public static String solicitudTraducirAIngles(String pTexto)
 	{
 		return FactoryTraductor.crearTraductor().traducirEspañolIngles(pTexto);
 		
+	}
+	
+	public static ArrayList<String> solicitarDatosCategoria(String pCategoria){
+		DTO_Consulta nuevaConsulta = new DTO_Consulta();
+		return FactoryConsulta.crearConsulta(nuevaConsulta).obtenerDatosCategoria(pCategoria);
 	}
 
 }

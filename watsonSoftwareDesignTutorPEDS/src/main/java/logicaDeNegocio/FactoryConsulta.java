@@ -2,8 +2,18 @@ package logicaDeNegocio;
 import java.lang.reflect.*; 
 import dto.DTO_Consulta; 
 
+/**
+ * Clase de patrón creacional Factory Simple.
+ * @author PEDS
+ * @version 1.0
+ */
 public class FactoryConsulta { 
 
+	/**
+	 * Crea un nuevo objeto de tipo Consulta.
+	 * @param DTO_nuevaConsulta
+	 * @return Consulta Voz/Texto.
+	 */
 	public static Consulta crearConsulta(DTO_Consulta DTO_nuevaConsulta) { 
 		Consulta nuevaConsulta; 
 		try { 

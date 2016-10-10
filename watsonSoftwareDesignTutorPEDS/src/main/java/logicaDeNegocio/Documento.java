@@ -35,8 +35,8 @@ public abstract class Documento {
 	}
 	
 	/**
-	 * Este método permite obtener la fecha de creación de un documento con el
-	 * formato día/mes/año
+	 * Este mï¿½todo permite obtener la fecha de creaciï¿½n de un documento con el
+	 * formato dï¿½a/mes/aï¿½o
 	 */
 	public String getFechaCreacion(){
 		SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
@@ -44,7 +44,7 @@ public abstract class Documento {
 	}
 	
 	/**
-	 * Permite establecer la fecha de creación del documento
+	 * Permite establecer la fecha de creaciï¿½n del documento
 	 * Dicha fecha es obtenida del sistema
 	 */
 	public void setFechaCreacion(){
@@ -62,24 +62,19 @@ public abstract class Documento {
 	}
 
 	/**
-	 * Permite obtener el título que llevará el documento
-	 * @return  titulo es un string que se compone del nombre del autor y la fecha de creación
+	 * Permite obtener el tï¿½tulo que llevarï¿½ el documento
+	 * @return  titulo es un string que se compone del nombre del autor y la fecha de creaciï¿½n
 	 */
 	public String getTitulo() {
 		return titulo;
 	}
 	
 	/**
-	 * Este método permite obtener el contenido del documeno
+	 * Este mï¿½todo permite obtener el contenido del documeno
 	 * @return contenido es un string con el texto del documento
 	 */
 	public String getContenido() {
 		return contenido;
 	}
-	
-	/*public String traducirAIngles(String pTexto)
-	{
-	
-	}*/
 	
 }

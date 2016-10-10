@@ -46,7 +46,7 @@
 </head>
 <body>
 
-<body>
+<body id="body">
     <div id="page">
         <img src="images/titulo.png" width="665" height="48" alt="titulo">
         <div class="topNaviagationLink"><a href="index.jsp">Principal</div>
@@ -80,12 +80,6 @@
 
         
         </div>
-
-
-
-
-
-
     </div>
         
 </body>

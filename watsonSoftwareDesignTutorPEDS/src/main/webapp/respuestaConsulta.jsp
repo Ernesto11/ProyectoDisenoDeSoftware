@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="utf-8"%>
     
     <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Consultar</title>
+<title>Consulta Respuesta</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="barrensavannah.css" />
 
@@ -26,12 +26,12 @@
     </div>
         <div class="contentBox">
     	<div class="innerBox">
-    	  <form name="form">
+    	  <form name="form" action="ServletTraducir"  method="post">
     	  <jsp:useBean id="DTO_Consulta" scope="request" class="dto.DTO_Consulta" />
     	  <%
     	  String pregunta = DTO_Consulta.getPreguntaTexto();
     	  %>
-    	  Pregunta Realizada: <input name="name" value="<%=pregunta%>" size="50" type="text" readonly><br><br>
+    	  Pregunta Realizada: <input name="pregunta" id="pregunta" value="<%=pregunta%>" size="50" type="text" readonly><br><br>
     	  <label>Respuestas:</label><br>
     	  
     	 <%
@@ -43,7 +43,13 @@
     	    }
         %>
     	  
-          <textarea name="area_respuestas"  cols="70" rows="5" readonly><%=respuesta%></textarea>
+          <textarea name="respuestas" id="respuestas"  cols="70" rows="5" readonly><%=respuesta%></textarea><br><br>
+          <h3>Calificacion de la respuesta:</h3><br>
+            <input type="radio" name="gender" value="Correcta" checked="checked"> Correcta<br>
+            <input type="radio" name="gender" value="Incorrecta"> Incorrecta<br><br>
+          <a href="consultar.jsp" target="_self"> <input type="button" name="boton" value="Aceptar" /> </a><br><br>
+          
+          <h3>Traducir a ingles:</h3><input type="submit" value="Traducir">   
 
     	  </form>
  

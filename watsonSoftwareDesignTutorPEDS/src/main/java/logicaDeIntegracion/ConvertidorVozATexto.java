@@ -2,6 +2,10 @@ package logicaDeIntegracion;
 
 import java.io.File;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognizeOptions;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechModel;
@@ -28,6 +32,22 @@ public class ConvertidorVozATexto implements IVoz_Texto {
 	
 		SpeechResults resultado = servicioVozATexto.recognize(pArchivo,opciones).execute();
 	
-		return resultado.toString();
+		return obtenerPreguntaTexto(resultado.toString());
 	}
+	
+    private String obtenerPreguntaTexto(String pResultado) {
+        
+    	JsonElement jelement = new JsonParser().parse(pResultado);
+	    JsonObject  jobject = jelement.getAsJsonObject();
+	    
+	    JsonArray jarray = jobject.getAsJsonArray("results");
+	    jelement = jarray.get(0);
+	    jobject = jelement.getAsJsonObject();
+	    
+	    JsonArray jarray2 = jobject.getAsJsonArray("alternatives");
+	    jelement = jarray2.get(0);
+	    jobject = jelement.getAsJsonObject();
+	    String respuesta = jobject.get("transcript").toString().replace('"', ' ');
+	    return respuesta;
+    }
 }

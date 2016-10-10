@@ -17,7 +17,7 @@ public abstract class Consulta implements Traducible {
     
 	
     protected ArrayList<String> contenidoRespuestas;
-    protected String contenidoPregunta;
+    protected String contenidoPreguntaTexto;
     protected boolean estadoRespuesta;
 
     public Consulta() {
@@ -33,14 +33,14 @@ public abstract class Consulta implements Traducible {
     
     public void setContenidoPregunta(String pContenidoPregunta) {
         
-    	this.contenidoPregunta = pContenidoPregunta;
+    	this.contenidoPreguntaTexto = pContenidoPregunta;
        
     }
 
    
     public String getContenidoPregunta() {
         
-        return this.contenidoPregunta;
+        return this.contenidoPreguntaTexto;
     }
 
     public String traducirAIngles(String pTexto) {  

@@ -12,19 +12,18 @@ import dto.DTO_Consulta;
  * 
  */
 public class Texto extends Consulta {
-
-	private String contenidoPregunta;
 	
     
     public  Texto(DTO_Consulta DTO_nuevaConsulta) {
-        this.contenidoPregunta =  DTO_nuevaConsulta.getPreguntaTexto(); 
+    	super();
+        this.contenidoPreguntaTexto =  DTO_nuevaConsulta.getPreguntaTexto(); 
     }
 
   
     public ArrayList<String> hacerConsulta() {
         
     	try {
-			return FactoryConversacion.crearConversacion().consultarPregunta(contenidoPregunta);
+			return contenidoRespuestas = FactoryConversacion.crearConversacion().consultarPregunta(contenidoPreguntaTexto);
 		} catch (SolrServerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

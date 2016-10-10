@@ -32,6 +32,7 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.RecognizeOptions;
 
 import dto.DTO_Consulta;
+import logicaDeNegocio.Voz;
 
 
 /**
@@ -77,24 +78,16 @@ public class ServletConsultaVoz extends HttpServlet {
     	
     	
     	DTO_Consulta nuevaConsulta = new DTO_Consulta();
-    	nuevaConsulta.setPreguntaTexto("prueba");
+    	
     	nuevaConsulta.setTipoConsulta("Voz");
     	nuevaConsulta.setPreguntaVoz(archivoWav);
-    	//ArrayList<String> respuestas = ControladorWeb.hacerConsulta(nuevaConsulta);
-    	//System.out.println(respuestas);
+    	Voz consultaVoz = (Voz)ControladorWeb.crearConsulta(nuevaConsulta);
+    	nuevaConsulta.setRespuestas(consultaVoz.hacerConsulta());
+    	nuevaConsulta.setPreguntaTexto(consultaVoz.getContenidoPregunta());
     	
         request.setAttribute("DTO_Consulta", nuevaConsulta);
         request.getRequestDispatcher("respuestaConsulta.jsp").forward(request, response);
-    	
-    	//ServletContext sc = getServletContext();
-    	//sc.getRequestDispatcher("/respuestaConsulta.jsp").forward(request, response);
-
-        //response.setHeader("Access-Control-Allow-Origin","*");
-       
-        //request.setAttribute("DTO_Consulta", nuevaConsulta)
-        //request.getRequestDispatcher("respuestaConsulta.jsp").forward(request, response);  	
-        //System.out.println("termino");
-    	
+  
      }
     
 

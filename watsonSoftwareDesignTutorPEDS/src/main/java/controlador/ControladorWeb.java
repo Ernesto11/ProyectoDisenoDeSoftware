@@ -9,6 +9,8 @@ import org.apache.solr.client.solrj.SolrServerException;
 
 import dto.DTO_Consulta;
 import dto.DTO_Pregunta;
+import logicaDeIntegracion.FactoryTraductor;
+import logicaDeNegocio.Consulta;
 import logicaDeNegocio.Documento;
 import logicaDeNegocio.FactoryConsulta;
 import logicaDeNegocio.FactoryPregunta;
@@ -32,12 +34,18 @@ public class ControladorWeb {
 		return FactoryPregunta.crearPregunta(DTO_nuevaPregunta);
 	}
 	
-	public static ArrayList<String> hacerConsulta(DTO_Consulta DTO_nuevaConsulta)
+	public static Consulta crearConsulta(DTO_Consulta DTO_nuevaConsulta)
 	{
-		return FactoryConsulta.crearConsulta(DTO_nuevaConsulta).hacerConsulta();
+		Consulta nuevaConsulta = FactoryConsulta.crearConsulta(DTO_nuevaConsulta); 
+		return nuevaConsulta;
 
 	}
 	
+	public static String solicitudTraducir(String pTexto)
+	{
+		return FactoryTraductor.crearTraductor().traducirEspañolIngles(pTexto);
+		
+	}
 	/**
 	public Documento solicitudCrearDocumento(DTO_Documento DTO_nuevoDocumento)
 	{

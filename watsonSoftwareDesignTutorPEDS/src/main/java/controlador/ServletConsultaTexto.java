@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import dto.DTO_Consulta;
+import logicaDeNegocio.Texto;
 
 /**
  * Servlet implementation class ServletConsultaTexto
@@ -36,8 +37,8 @@ public class ServletConsultaTexto extends HttpServlet {
     	DTO_Consulta nuevaConsulta = new DTO_Consulta();
     	nuevaConsulta.setPreguntaTexto(pregunta);
     	nuevaConsulta.setTipoConsulta("Texto");
-    	ArrayList<String> respuestas = ControladorWeb.hacerConsulta(nuevaConsulta);
-    	nuevaConsulta.setRespuestas(respuestas);
+    	Texto consultaTexto = (Texto)ControladorWeb.crearConsulta(nuevaConsulta);
+    	nuevaConsulta.setRespuestas(consultaTexto.hacerConsulta());
     	
     	
         request.setAttribute("DTO_Consulta", nuevaConsulta);

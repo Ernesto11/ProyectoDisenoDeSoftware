@@ -7,6 +7,7 @@ import org.apache.solr.client.solrj.SolrServerException;
 
 import dto.DTO_Consulta;
 import enlaceDeDatos.ConexionBaseDatosRedis;
+import logicaDeIntegracion.ConvertidorVozATexto;
 import logicaDeIntegracion.FactoryConversacion;
 import logicaDeNegocio.FactoryConsulta;
 import logicaDeNegocio.Texto;
@@ -24,10 +25,10 @@ public class Principal {
 	
 	public static void main(String[] args) throws SolrServerException, IOException {
 		
-		DTO_Consulta p = new DTO_Consulta();
-		p.setTipoConsulta("Texto");
-		p.setPreguntaTexto("¿Qué es Programación Orientada a Objetos?");
-		FactoryConsulta.crearConsulta(p).hacerConsulta();
+
+		ConvertidorVozATexto p = new ConvertidorVozATexto();
+		File n = new File("C:/Users/Ernesto/Desktop/prueb1a.wav");
+		System.out.println(p.convertirVozTexto(n));
 		//File f = new File("C:/Users/Ernesto/Desktop/prueba.wav");
 		//p.setPreguntaVoz(f);
 		//Voz t = new Voz(p);

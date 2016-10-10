@@ -101,16 +101,14 @@ public class Conversacion implements IConversacion {
 
 
 	    	SolrInputDocument document = new SolrInputDocument();
-	    	document.addField("id", 1);
+	    	document.addField("id", pPregunta);
 	    	document.addField("author", "Watson Tutor: Curso Diseño Software");
 	    	document.addField("body", pRespuesta);
 	    	document.addField("title",pPregunta );
 
 
 	    	UpdateResponse addResponse = solrClient.add("WATSONTUTORDISENO", document);
-	    	System.out.println(addResponse);
 
-	    	// Commit the document to the index so that it will be available for searching.
 	    	solrClient.commit("WATSONTUTORDISENO");
 
 	     }

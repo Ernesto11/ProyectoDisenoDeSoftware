@@ -1,4 +1,4 @@
-package controlor;
+package controlador;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controlador.ControladorWeb;
 import dto.DTO_Consulta;
 import logicaDeNegocio.Voz;
 
@@ -41,6 +40,8 @@ public class ServletTraducir extends HttpServlet {
     	
     	nuevaConsulta.getRespuestas().add(respuestaIngles);
     	nuevaConsulta.setPreguntaTexto(preguntaIngles);
+    	
+    	
     	
         request.setAttribute("DTO_Consulta", nuevaConsulta);
         request.getRequestDispatcher("respuestaConsulta.jsp").forward(request, response);

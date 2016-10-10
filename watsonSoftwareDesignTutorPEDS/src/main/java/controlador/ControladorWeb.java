@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import dto.DTO_Consulta;
+import dto.DTO_Documento;
 import dto.DTO_Pregunta;
 import logicaDeIntegracion.FactoryTraductor;
 import logicaDeNegocio.Consulta;
 import logicaDeNegocio.Documento;
 import logicaDeNegocio.FactoryConsulta;
+import logicaDeNegocio.FactoryDocumento;
 import logicaDeNegocio.FactoryPregunta;
 import logicaDeNegocio.Pregunta;
 //import logicaDeNegocio.Consulta;
@@ -24,6 +26,19 @@ public class ControladorWeb {
 	{
 		
 	}*/
+	
+	/**	 * Permite crear un objeto de tipo Documento, enviando el objeto DTO_nuevoDocumento a la
+	 * fábrica encargada de crear dicho documento.
+	 * @param DTO_nuevoDocumento contiene los datos necesarios para crear el objeto Documento
+	 * @return nuevoDocumento es el objeto creado a partir del DTO_nuevoDocumento
+	 */
+	public static Documento solicitudCrearDocumento(DTO_Documento DTO_nuevoDocumento)
+	{
+		Documento nuevoDocumento = FactoryDocumento.crearDocumento(DTO_nuevoDocumento);
+		return nuevoDocumento;
+	}
+	
+	
 	
 	public static void solicitudRealizarRegistro(DTO_Pregunta DTO_nuevaPregunta) throws SolrServerException, IOException
 	{
@@ -46,34 +61,5 @@ public class ControladorWeb {
 		return FactoryTraductor.crearTraductor().traducirEspañolIngles(pTexto);
 		
 	}
-	/**
-	public Documento solicitudCrearDocumento(DTO_Documento DTO_nuevoDocumento)
-	{
-		FactoryDocumento nuevaFabricaDoc = new FactoryDocumento();
-		Documento nuevoDocumento = nuevaFabricaDoc.crearDocumento(DTO_nuevoDocumento);
-		return nuevoDocumento;
-	}
-	
-	public void solicitudGenerarArchivo(String pContenido, String pIdioma, String pTipoDocumento, Document pPreDocumento)
-	{
-		DTO_Documento DTO_nuevoDocumento = new DTO_Documento();
-		DTO_nuevoDocumento.setContenido(pContenido);
-		//DTO_nuevoDocumento.setPreDocumento(pPreDocumento);
-		DTO_nuevoDocumento.setIdioma(pIdioma);
-		DTO_nuevoDocumento.setTipoDocumento(pTipoDocumento);
-		
-		Documento nuevoDocumento = solicitudCrearDocumento(DTO_nuevoDocumento);
-		nuevoDocumento.generarArchivo();
-	}
-	
-	/*
-	public Consulta solicitudCrearConsulta()
-	{
-		
-	}
-	*/
-	public void solicitudHacerConsulta()
-	{
-		
-	}
+
 }

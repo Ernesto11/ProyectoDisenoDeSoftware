@@ -1,33 +1,24 @@
 package logicaDeNegocio;
 
-
+import dto.DTO_Documento;
 
 /**
- * 
+ * esta clase permite crear objetos de tipo .txt
+ * @author PEDS_ATI
+ *
  */
-public class TXT extends Documento {
+public class TXT extends Documento{
 
-	public TXT (String pFuenteDeDatos, String pContenido, String pRutaDeGuardado){
-		super(pFuenteDeDatos, pContenido, pRutaDeGuardado);
-		generarArchivo();
-	}
-	
-	public void generarArchivo()
+	/**
+	 * Este es el constructor que permite crear los objetos TXT
+	 * @param DTO_nuevoDocumento es el objeto que contiene todos los atributos necesarios
+	 * para crear el objeto TXT, pero como éste no posee atributo entonces solo se utiliza en
+	 * la super clase.
+	 */
+	public TXT(DTO_Documento DTO_nuevoDocumento )
 	{
-		/**try{
-			File archivo = new File(rutaDeGuardado+".txt");
-			BufferedWriter bufferEscritura;
-			bufferEscritura= new BufferedWriter(new FileWriter(archivo));
-			bufferEscritura.write(titulo);
-			bufferEscritura.newLine();
-			bufferEscritura.newLine();
-			bufferEscritura.write(contenido);
-			bufferEscritura.close();
-		
-		}catch(Exception e)
-		{
-			//MOSTRAR MENSAJE DE ERROR, PERO EN LA CAPA DE PRESENTACION
-		}**/
-	}
+		super(DTO_nuevoDocumento);
+	};
+	
 
 }

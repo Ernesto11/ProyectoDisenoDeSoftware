@@ -3,6 +3,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+function callservlet() {
+
+    var servletname='/watsonSoftwareDesingTutorPEDS/ServletTraducir';
+
+    if(servletname== "")
+        {
+        alert("NO value..");
+        return false;
+        }
+    else
+        {
+    	document.form.action = servletname;
+    	document.form.submit();
+        return false;
+        }
+}
+</script>
+
+
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 	<script src="js/audiodisplay.js"></script>
@@ -52,7 +72,7 @@
         <div class="topNaviagationLink"><a href="index.jsp">Principal</div>
         <div class="topNaviagationLink"><a href="registrar.jsp">Registrar</div>
       <div class="topNaviagationLink"><a href="consultar.jsp">Consultar </div>
-        <div class="topNaviagationLink"><a href="index.html">Contact</a></div>
+      <div class="topNaviagationLink"><a href="catalogo.jsp">Catalogo</a></div>
 </div>
     <div id="mainPicture">
     	<div class="picture"></div>

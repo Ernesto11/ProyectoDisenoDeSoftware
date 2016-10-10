@@ -134,6 +134,7 @@ DEALINGS IN THE SOFTWARE.
 	  xhr.open('POST', '/watsonSoftwareDesingTutorPEDS/ServletConsultaVoz', true);
 	  xhr.onload = function () {
 	      // do something to response
+		  alert(this.responseText);
 		  document.getElementById("body").innerHTML = this.responseText;
 	  };
 	  xhr.send(data);

@@ -30,7 +30,7 @@ public class Traductor implements ITraductor {
 	    jelement = jarray.get(0);
 	    jobject = jelement.getAsJsonObject();
 	    String respuesta = jobject.get("translation").toString();  
-	    return respuesta;
+	    return respuesta.replace('"', ' ');
 		
 	}
 }

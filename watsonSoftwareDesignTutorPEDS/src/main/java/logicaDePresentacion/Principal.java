@@ -1,37 +1,42 @@
 package logicaDePresentacion;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
-
-
-
-
-
+import org.apache.solr.client.solrj.SolrServerException;
 
 import dto.DTO_Consulta;
-import enlaceDeDatos.BaseDatos;
-import logicaDeNegocio.Consulta;
+import enlaceDeDatos.ConexionBaseDatosRedis;
+import logicaDeIntegracion.FactoryConversacion;
 import logicaDeNegocio.FactoryConsulta;
-import logicaDeNegocio.FactoryServicios;
 import logicaDeNegocio.Texto;
+import logicaDeNegocio.Voz;
+
+
+
+
 
 
 public class Principal {
-
-	public static void main(String[] args) {
+	
+    
+    
+	
+	public static void main(String[] args) throws SolrServerException, IOException {
 		
-	System.out.println("nanito");
+		DTO_Consulta p = new DTO_Consulta();
+		p.setTipoConsulta("Texto");
+		p.setPreguntaTexto("¿Qué es Programación Orientada a Objetos?");
+		FactoryConsulta.crearConsulta(p).hacerConsulta();
+		//File f = new File("C:/Users/Ernesto/Desktop/prueba.wav");
+		//p.setPreguntaVoz(f);
+		//Voz t = new Voz(p);
 		
-	DTO_Consulta dto = new DTO_Consulta();
-	dto.setPreguntaTexto("que es un atributo");
-	
-	FactoryConsulta fc = new FactoryConsulta();
-	
-	
-	FactoryServicios sc = new FactoryServicios();
-	System.out.println(sc.crearServicioTraducir().traducirEspañolIngles("mi nombres es Daniel"));
-	System.out.println(sc.crearServicioConversacion().consultarPregunta(fc.crearConsultaPorTexto(dto).getContenidoPregunta()));
+		//System.out.println(t.hacerConsulta());
+		
+       // System.out.println(FactoryConversacion.crearConversacion().consultarPregunta("¿Qué es UML?"));  
+        //ConexionBaseDatosRedis p = new ConexionBaseDatosRedis();
+        //p.obtenerDatos("Programacion orientada a objetos");
 	}
 
 }

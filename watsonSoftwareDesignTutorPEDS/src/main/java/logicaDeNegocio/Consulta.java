@@ -2,6 +2,8 @@ package logicaDeNegocio;
 
 import java.util.*;
 
+import logicaDeIntegracion.FactoryTraductor;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -27,29 +29,6 @@ public abstract class Consulta implements Traducible {
     public abstract ArrayList<String> hacerConsulta();
 
    
-    public ArrayList<String> obtenerRespuestas(String pRespuestaJSON) {
-  
-    	
-    	JsonElement jelement = new JsonParser().parse(pRespuestaJSON);
-	    JsonObject  jobject = jelement.getAsJsonObject();
-	    
-	    jelement = jobject.get("output");
-	    jobject = jelement.getAsJsonObject();
-	    
-	    JsonArray listaRespuestasObtenidas = jobject.getAsJsonArray("text");
-	    
-	    if(listaRespuestasObtenidas.size() != 0){
-	    	for (int contador=0; contador<listaRespuestasObtenidas.size();contador++)
-	    	{
-	    		contenidoRespuestas.add(listaRespuestasObtenidas.get(contador).toString());
-	    	}
-	    }
-	    else
-	    {
-	    	contenidoRespuestas.add("No se encontro ninguna respuesta para esa pregunta.");
-	    }
-	    return contenidoRespuestas;
-    }
 
     
     public void setContenidoPregunta(String pContenidoPregunta) {
@@ -64,11 +43,8 @@ public abstract class Consulta implements Traducible {
         return this.contenidoPregunta;
     }
 
-    public String traducirAIngles(String pTexto) {
-    
-        
-        FactoryServicios familiaServicios = new FactoryServicios();
-        return familiaServicios.crearServicioTraducir().traducirEspañolIngles(pTexto);
+    public String traducirAIngles(String pTexto) {  
+        return FactoryTraductor.crearTraductor().traducirEspañolIngles(pTexto);
     	
     }
 }

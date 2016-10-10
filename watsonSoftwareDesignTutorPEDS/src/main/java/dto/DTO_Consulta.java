@@ -15,13 +15,23 @@ public class DTO_Consulta implements Serializable {
 
 	private File preguntaVoz;
     private String preguntaTexto;
+    private String tipoConsulta;
     private ArrayList<String> respuestas;
 
     public DTO_Consulta()  {
-        
-    	respuestas = new ArrayList<String>();
+        respuestas = new ArrayList<String>();
+    	
     }
-
+	
+	public void setTipoConsulta(String pTipoConsulta) {
+	    this.tipoConsulta = pTipoConsulta;
+	
+	}
+	
+	public String getTipoConsulta() {
+	    
+	    return this.tipoConsulta;
+	}
     public void setPreguntaTexto(String pPregunta) {
         this.preguntaTexto = pPregunta;
 
@@ -30,19 +40,7 @@ public class DTO_Consulta implements Serializable {
         this.preguntaVoz = pPregunta;
 
     }
-    public void setRespuestas(ArrayList<String> pRespuestas) {
-        respuestas = pRespuestas;
-
-    }
-
-    public ArrayList<String> getRespuestas() {
-       
-        return this.respuestas;
-    }
-
-    /**
-     * @return
-     */
+  
     public String getPreguntaTexto() {
         
         return this.preguntaTexto;
@@ -51,4 +49,14 @@ public class DTO_Consulta implements Serializable {
         
         return this.preguntaVoz;
     }
+
+	public ArrayList<String> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(ArrayList<String> pRespuestas) {
+		this.respuestas = pRespuestas;
+	}
+    
+    
 }

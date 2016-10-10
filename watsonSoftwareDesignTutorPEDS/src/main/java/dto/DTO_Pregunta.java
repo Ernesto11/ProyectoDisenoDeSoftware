@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * 
  */
-public class DTO_Registro implements Serializable{
+public class DTO_Pregunta implements Serializable{
 
     
     /**
@@ -14,11 +14,12 @@ public class DTO_Registro implements Serializable{
 	 */
 
 	private String pregunta;
-    private String[] respuestas;
+    private String respuesta;
     private String categoria;
+    private String estado;
 
 
-    public DTO_Registro() {
+    public DTO_Pregunta() {
 
     }
 
@@ -33,11 +34,17 @@ public class DTO_Registro implements Serializable{
         
     }
 
-    public void setRespuestas(String[] pRespuestas) {
+    public void setRespuesta(String pRespuesta) {
         
-        respuestas = pRespuestas;
+        respuesta = pRespuesta;
     }
 
+    public void setEstado(String pEstado) {
+        
+        respuesta = pEstado;
+    }
+   
+    
     
     public String getPregunta() {
         
@@ -49,9 +56,14 @@ public class DTO_Registro implements Serializable{
         return this.categoria;
     }
 
-    public String[] getRespuestas() {
+    public String getRespuesta() {
         
-        return this.respuestas;
+        return this.respuesta;
+    }
+    
+    public String getEstado() {
+        
+        return this.estado;
     }
 
 }

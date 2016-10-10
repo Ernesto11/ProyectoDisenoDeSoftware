@@ -1,27 +1,33 @@
-package logicaDeNegocio;
+package logicaDeNegocio; 
+import java.lang.reflect.*; 
+import dto.DTO_Consulta; 
 
+public class FactoryConsulta { 
 
-import dto.DTO_Consulta;
-
-/**
- * 
- */
-public class FactoryConsulta implements AbstractFactoryConsulta {
-
-	
-	
-    public FactoryConsulta() {
-    }
-
-    public Voz crearConsultaPorVoz(DTO_Consulta pObjetoDTO) {
-    	Voz nuevaConsultaPorVoz = new Voz(pObjetoDTO.getPreguntaVoz());
-    	return nuevaConsultaPorVoz;
-    }
-
-    public Texto crearConsultaPorTexto(DTO_Consulta pObjetoDTO) {
-    	Texto nuevaConsultaPorTexto = new Texto(pObjetoDTO.getPreguntaTexto());
-    	nuevaConsultaPorTexto.setContenidoPregunta(pObjetoDTO.getPreguntaTexto());
-    	return nuevaConsultaPorTexto;
-    }
-
+	public static Consulta crearConsulta(DTO_Consulta DTO_nuevaConsulta) { 
+		Consulta nuevaConsulta; 
+		try { 
+		    Class<?> claseHijaConsulta = Class.forName("logicaDeNegocio."+DTO_nuevaConsulta.getTipoConsulta()); 
+			try 
+			{ 
+				Constructor<?> constructorConsulta = claseHijaConsulta.getConstructor(new Class[]{DTO_Consulta.class}); 
+				try 
+				{ 
+				   try 
+				   { 
+					try 
+					{ 
+						nuevaConsulta = (Consulta) constructorConsulta.newInstance(DTO_nuevaConsulta); 
+						return nuevaConsulta; 
+					}catch (InstantiationException e) 
+					{ 
+						return null; 
+				    } 
+					}
+				   catch (IllegalAccessException e) { return null; 
+				}
+				   }catch (InvocationTargetException e) { return null; 
+			} } catch (NoSuchMethodException e){ return null; 
+		} }catch (ClassNotFoundException e) { return null; } 
+	} 
 }

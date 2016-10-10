@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<meta http-equiv="Content-Type" /> 
 <head>
 <title>Registrar</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -41,19 +42,15 @@ function agregarElemento()
         <div class="contentBox">
     	<div class="innerBox">
         
-        <form name="form"  action="ControladorRegistro"  method="post">
+        <form name="form"  action="ServletRegistro"  method="post">
     	  <p>
     	  <br><label>Seleccione una categoria: </label><br>
     	  <input type="radio" name="tipo" value="Programacion orientada a objetos" checked>Programacion Orientada a objetos.<br>
           <input type="radio" name="tipo" value="Notacion UML">Notacion UML para diagramas de Clase.<br>
-          <input type="radio" name="tipo" value="Principios de Diseño">Principios de Diseno. <br><br>
+          <input type="radio" name="tipo" value="Principios de Diseno">Principios de Diseno. <br><br>
     
-          <br><label>Ingrese la pregunta: </label><input id="pregunta" name="pregunta" type="text" width="450"><br>
-          <br><label>Ingrese la respuesta: </label><input id="respuesta" name="respuesta" width="450" type="text"><br>
-          <br><input type="button" onclick="agregarElemento()" value="Agregar Respuesta"><br>
-    	  <select  multiple="multiple"  id="respuestas" name="respuestas" size="5" style="visibility:hidden">
-  	      </select>
-    	    <br><br><br>
+          <br><label>Ingrese la pregunta: </label><input id="pregunta" name="pregunta" type="text" size="80"   required><br>
+          <br><label>Ingrese la respuesta:<br> </label><input id="respuesta" name="respuesta" size="80" style="width:600px;height:90px"  type="text" required><br><br><br>
    	      </p>
     	  <p>
     	    <input type="submit" value="Registrar">

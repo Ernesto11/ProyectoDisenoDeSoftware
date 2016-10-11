@@ -67,7 +67,7 @@ public class Pregunta {
     
     private void registrarEnWatson() throws SolrServerException, IOException
     {
-    	FactoryConversacion.crearConversacion().registrarPreguntaRespuesta(pregunta, respuesta.getRespuesta());
+    	FactoryConversacion.crearConversacion().registrarPreguntaRespuesta(categoriaPregunta, pregunta, respuesta.getRespuesta());
     }
     
 

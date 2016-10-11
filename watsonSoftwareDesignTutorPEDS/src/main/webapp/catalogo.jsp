@@ -40,15 +40,15 @@
           
           <br><br>
           <label>Seleccione una categoria: </label><br><br>
-    	  <input type="radio" name="tipo" value="Programacion orientada a objetos" checked>Programacion Orientada a objetos.<br>
-          <input type="radio" name="tipo" value="Notacion UML">Notacion UML para diagramas de Clase.<br>
-          <input type="radio" name="tipo" value="Principios de Diseno">Principios de Diseno. <br><br>
+    	  <input type="radio" name="tipo" id="tipo"  value="Programacion orientada a objetos" checked>Programacion Orientada a objetos.<br>
+          <input type="radio" name="tipo" id="tipo"  value="Notacion UML">Notacion UML para diagramas de Clase.<br>
+          <input type="radio" name="tipo" id="tipo" value="Principios de Diseno">Principios de Diseno. <br><br>
     
     
     
               <label>Seleccione el idioma: </label><br><br>
-    	  <input type="radio" name="idioma" value="espanol" checked>Español.<br>
-          <input type="radio" name="idioma" value="ingles">Ingles.<br><br> 
+    	  <input type="radio" name="idioma" id="idioma"  value="espanol" checked>Español.<br>
+          <input type="radio" name="idioma" id="idioma"  value="ingles">Ingles.<br><br> 
     
     
     	    <input type="submit" value="Descargar">

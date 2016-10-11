@@ -46,7 +46,7 @@ public class ControladorWeb {
 	}
 	
 	/**
-	 * Permite crear una nueva pregunta, enviando el objeto DTO_nuevaPregunta a la fabrica encargada de crear la pregunta.
+	 * Permite crear una nueva pregunta, enviando el objeto DTO_nuevaPregunta a la fábrica encargada de crear la pregunta.
 	 * @param DTO_nuevaPregunta
 	 * @return Pregunta
 	 */
@@ -55,9 +55,9 @@ public class ControladorWeb {
 	}
 	
 	/**
-	 * 
+	 * Crea un objeto de tipo consulta, enviando el objeto DTO_nuevaConsulta a la fábrica encargada de crear la consulta
 	 * @param DTO_nuevaConsulta
-	 * @return
+	 * @return Consulta.
 	 */
 	
 	public static Consulta crearConsulta(DTO_Consulta DTO_nuevaConsulta)
@@ -67,14 +67,27 @@ public class ControladorWeb {
 
 	}
 	
+	/**
+	 * Traduce un texto de español a ingles.
+	 * @param pTexto
+	 * @return texto traducido.
+	 */
+	
 	public static String solicitudTraducirAIngles(String pTexto)
 	{
 		return FactoryTraductor.crearTraductor().traducirEspañolIngles(pTexto);
 		
 	}
 	
+	/**
+	 * Retorna las preguntas asociadas a una categoria. 
+	 * @param pCategoria
+	 * @return
+	 */
+	
 	public static ArrayList<String> solicitarDatosCategoria(String pCategoria){
 		DTO_Consulta nuevaConsulta = new DTO_Consulta();
+		nuevaConsulta.setTipoConsulta("Texto");
 		return FactoryConsulta.crearConsulta(nuevaConsulta).obtenerDatosCategoria(pCategoria);
 	}
 

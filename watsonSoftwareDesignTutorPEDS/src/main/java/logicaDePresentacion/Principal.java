@@ -38,11 +38,9 @@ public class Principal {
 		
        // System.out.println(FactoryConversacion.crearConversacion().consultarPregunta("¿Qué es UML?"));  
         ConexionBaseDatosRedis p = new ConexionBaseDatosRedis();
-        ArrayList<String> n = p.obtenerDatos("Principios de Diseno");
+        ArrayList<String> n = p.obtenerDatos("Programacion orientada a objetos");
         System.out.println(n.toString());
-       p.limpiarBaseDatos("Principios de Diseno");
-        n = p.obtenerDatos("Principios de Diseno");
-       System.out.println("Despues"+ n.toString());        
+   
         
         
         

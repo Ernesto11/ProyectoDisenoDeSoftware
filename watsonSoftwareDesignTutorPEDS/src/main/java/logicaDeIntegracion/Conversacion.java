@@ -40,13 +40,14 @@ import com.ibm.watson.developer_cloud.retrieve_and_rank.v1.RetrieveAndRank;
 
 public class Conversacion implements IConversacion {
 	
-	   private static final String NOMBREUSUARIO = "dcc5c372-f424-4e2e-8e62-4bb3a22d7e5a";
-	   private static final String CONTRASENA = "cwZEYKZL7CyR";
-	    private static final String NOMBRECLUSTER = "WATSONTUTORDISENO";
-	    private static final String CLUSTERID = "sc26b9c1af_fa9b_4aa2_9e50_7def90c67f9f";
+	   private static final String NOMBREUSUARIO = "95b599fb-d251-4f9f-bd98-89e0ce25d5ca";
+	   private static final String CONTRASENA = "yCC4bmfo60g7";
+	    private static final String NOMBRECLUSTER = "TutorCognitivo";
+	    private static final String CLUSTERID = "sc1b907747_bd5a_4242_97a2_644887fce7c4";
 
-	   private static final String NOMBRECONFIGURACION = "WATSONTUTOR";
-	   private static final String NOMBRECOLECCION = "WATSONTUTORDISENO";
+
+	   private static final String NOMBRECONFIGURACION = "WATSONTUTOR1";
+	   private static final String NOMBRECOLECCION = "COLECCIONTUTORWATSON";
 	   private static RetrieveAndRank servicio;
 	   private static SolrClient clienteSolr;
 	   
@@ -102,14 +103,21 @@ public class Conversacion implements IConversacion {
 	  /**
 	   * Registra un documento que contiene una pregunta y respuesta en la colección del servicio de watson.
 	   */
-	    public void registrarPreguntaRespuesta(String pPregunta, String pRespuesta) throws SolrServerException, IOException {
+	    public void registrarPreguntaRespuesta(String pCategoria,String pPregunta, String pRespuesta) throws SolrServerException, IOException {
 	    	clienteSolr = Conversacion.getSolrClient(servicio.getSolrUrl(CLUSTERID));
 	    	SolrInputDocument document = new SolrInputDocument();
+	    	
+	    	
+
 	    	document.addField("id", pPregunta);
-	    	document.addField("author", "Watson Tutor: Curso Diseño Software");
-	    	document.addField("body", pRespuesta);
-	    	document.addField("title",pPregunta );
+	    	document.addField("pregunta", pPregunta);
+	    	document.addField("respuesta", pRespuesta);
+
+
 	    	UpdateResponse addResponse = clienteSolr.add(NOMBRECOLECCION, document);
+	    	System.out.println(addResponse);
+
+	    	// Commit the document to the index so that it will be available for searching.
 	    	clienteSolr.commit(NOMBRECOLECCION);
 	     }
 	    
@@ -130,7 +138,7 @@ public class Conversacion implements IConversacion {
 	    	QueryResponse response = clienteSolr.query(NOMBRECOLECCION, query);
 	    	
 	    	for(int i= 0; i< response.getResults().size(); i++){
-	    		respuestas.add(response.getResults().get(i).get("body").toString().replace("[", "").replace("]", ""));
+	    		respuestas.add(response.getResults().get(i).get("respuesta").toString().replace("[", "").replace("]", ""));
 	    	}
 	    	
 	    	return respuestas;

@@ -68,9 +68,7 @@ public class ServletCatalogo extends HttpServlet {
        		 }
        		 
        		DTO_nuevoDocumento.setContenido( contenido );
-       		 Font fuenteTitulo = new Font(FontFamily.TIMES_ROMAN, 18, Font.BOLD, new BaseColor(0, 0, 0));
-       		 DTO_nuevoDocumento.setFormatoFuenteTitulo(fuenteTitulo);
-       		 DTO_nuevoDocumento.setTamanoPagina(PageSize.LETTER);
+       	
        		 
        		 PDF nuevoDocumento = (PDF)ControladorWeb.solicitudCrearDocumento(DTO_nuevoDocumento);
        		 
@@ -85,10 +83,10 @@ public class ServletCatalogo extends HttpServlet {
        	    	 doc.addAuthor(nuevoDocumento.getAutor());
        		     doc.addCreationDate();
        		     doc.addTitle("Documento "+nuevoDocumento.getAutor());
-       		     doc.setPageSize(nuevoDocumento.getTamanoPagina());
+       		     doc.setPageSize(PageSize.LETTER);
        		     doc.open();
 
-       		     doc.add( new Paragraph(nuevoDocumento.getTitulo()+"\n\n", fuenteTitulo));
+       		     doc.add( new Paragraph(nuevoDocumento.getTitulo()+"\n\n"));
        		     doc.add( new Paragraph(nuevoDocumento.getContenido()));
        		     doc.close(); 
 

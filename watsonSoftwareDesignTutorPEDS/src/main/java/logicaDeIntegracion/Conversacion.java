@@ -27,8 +27,11 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
+import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import com.ibm.watson.developer_cloud.retrieve_and_rank.v1.RetrieveAndRank;
+
+
 
 
 /**
@@ -39,15 +42,15 @@ import com.ibm.watson.developer_cloud.retrieve_and_rank.v1.RetrieveAndRank;
  */
 
 public class Conversacion implements IConversacion {
-	
-	   private static final String NOMBREUSUARIO = "95b599fb-d251-4f9f-bd98-89e0ce25d5ca";
-	   private static final String CONTRASENA = "yCC4bmfo60g7";
-	    private static final String NOMBRECLUSTER = "TutorCognitivo";
-	    private static final String CLUSTERID = "sc1b907747_bd5a_4242_97a2_644887fce7c4";
+
+	private static final String NOMBREUSUARIO = "df5dddb0-3925-4c81-badb-4539817e18ae";
+	   private static final String CONTRASENA = "X7zwk2pGGMU5";
+	    private static final String NOMBRECLUSTER ="ClusterDS";
+	    private static final String CLUSTERID = "sc5d2ec594_27c7_43bd_982a_a680411d004b";
 
 
-	   private static final String NOMBRECONFIGURACION = "WATSONTUTOR1";
-	   private static final String NOMBRECOLECCION = "COLECCIONTUTORWATSON";
+	   private static final String NOMBRECONFIGURACION = "ConfiguracionDS";
+	   private static final String NOMBRECOLECCION = "WatsonTutor";	
 	   private static RetrieveAndRank servicio;
 	   private static SolrClient clienteSolr;
 	   
@@ -110,8 +113,11 @@ public class Conversacion implements IConversacion {
 	    	
 
 	    	document.addField("id", pPregunta);
-	    	document.addField("pregunta", pPregunta);
-	    	document.addField("respuesta", pRespuesta);
+	    	document.addField("title", pPregunta);
+	    	document.addField("body", pRespuesta);
+	    	
+	    	document.addField("author", "Watson Tutor");
+	    	document.addField("bibliography", "IBM BLUEMIX");
 
 
 	    	UpdateResponse addResponse = clienteSolr.add(NOMBRECOLECCION, document);
@@ -131,19 +137,31 @@ public class Conversacion implements IConversacion {
 	    public ArrayList<String> consultarPregunta(String pPregunta) throws SolrServerException, IOException{
 	    	ArrayList<String> respuestas = new ArrayList<String>();
 	    	
-	    	clienteSolr = Conversacion.getSolrClient(servicio.getSolrUrl(CLUSTERID));
-
-	    	SolrQuery query = new SolrQuery(pPregunta);
-	    	
+	    	clienteSolr = Conversacion.getSolrClient(servicio.getSolrUrl(CLUSTERID));	    	
+	    	SolrQuery query = new SolrQuery().setQuery(pPregunta);
+	             
 	    	QueryResponse response = clienteSolr.query(NOMBRECOLECCION, query);
+	    	 SolrDocumentList results = response.getResults();
+	    	    for (int i = 0; i < results.size(); ++i) {
+	    	     
+	    	      if((results.get(i).get("title").toString().indexOf(pPregunta)!=-1) || results.get(i).get("title").equals(pPregunta)  )
+	    	      {
+	    	    	  respuestas.add(results.get(i).get("body").toString().replace("[", "").replace("]", ""));
+	    	      }
+	    	    }
+	    	    return respuestas;
+	        }
 	    	
-	    	for(int i= 0; i< response.getResults().size(); i++){
-	    		respuestas.add(response.getResults().get(i).get("respuesta").toString().replace("[", "").replace("]", ""));
-	    	}
 	    	
-	    	return respuestas;
-	 
-	    }
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+
+
+	    
 	 
 
 		   

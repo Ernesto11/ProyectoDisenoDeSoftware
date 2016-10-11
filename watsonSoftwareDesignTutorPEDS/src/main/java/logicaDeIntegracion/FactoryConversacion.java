@@ -12,9 +12,9 @@ public class FactoryConversacion {
 	 * Crea un nuevo objeto de tipo Conversacion.
 	 * @return Conversacion.
 	 */
-	public static Conversacion crearConversacion()
+	public static IConversacion crearConversacion()
 	{
-		Conversacion nuevaConversacion = new Conversacion();
+		IConversacion nuevaConversacion = new Conversacion();
 		return nuevaConversacion;
 		
 	}

@@ -13,8 +13,9 @@ public class FactoryConvertidorVozATexto {
 	 * Crea un nuevo objeto de tipo ConvertidorVozATexto.
 	 * @return ConvertidorVozATexto.
 	 */
-	public static ConvertidorVozATexto crearVoz_Texto(){
-		return new ConvertidorVozATexto();
+	public static IVoz_Texto crearVoz_Texto(){
+	    IVoz_Texto nuevoConvertidorVozATexto = new ConvertidorVozATexto();
+	    return nuevoConvertidorVozATexto;
 	}
 
 }

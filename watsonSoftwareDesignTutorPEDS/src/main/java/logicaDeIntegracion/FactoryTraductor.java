@@ -13,8 +13,9 @@ public class FactoryTraductor {
 	 * Crea un nuevo objeto de tipo Traductor..
 	 * @return Traductor.
 	 */	
-	public static Traductor crearTraductor(){
-		return new Traductor();
+	public static ITraductor crearTraductor(){
+		ITraductor nuevoTraductor = new Traductor();
+		return  nuevoTraductor;
 	}
 
 }

@@ -71,7 +71,8 @@ public class ConvertidorVozATexto implements IVoz_Texto {
 	    JsonArray jarray2 = jobject.getAsJsonArray("alternatives");
 	    jelement = jarray2.get(0);
 	    jobject = jelement.getAsJsonObject();
-	    String respuesta = jobject.get("transcript").toString().replace('"', ' ');
+	    String respuesta = jobject.get("transcript").toString();
+	    respuesta = respuesta.substring(1, respuesta.length()-2).toString();
 	    return respuesta;
     }
 }

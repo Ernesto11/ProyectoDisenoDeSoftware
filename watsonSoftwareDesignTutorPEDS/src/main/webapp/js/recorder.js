@@ -132,9 +132,8 @@ DEALINGS IN THE SOFTWARE.
 
 	  var xhr = new XMLHttpRequest();
 	  xhr.open('POST', '/watsonSoftwareDesingTutorPEDS/ServletConsultaVoz', true);
-	  xhr.onload = function () {
-	      // do something to response
-		  alert(this.responseText);
+	  xhr.onload = function () 
+	  {
 		  document.getElementById("body").innerHTML = this.responseText;
 	  };
 	  xhr.send(data);

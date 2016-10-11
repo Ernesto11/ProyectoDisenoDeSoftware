@@ -1,10 +1,6 @@
 package dto;
 
-import com.itextpdf.text.Rectangle;
-
 import java.util.Date;
-
-import com.itextpdf.text.Font;
 
 /**
  * Esta clase permite crear objetos de tipo DTO_Documento que permite transportar
@@ -15,12 +11,10 @@ import com.itextpdf.text.Font;
  */
 public class DTO_Documento {
 	
-	private  Font formatoFuenteTitulo;
 	private String autor;
 	private String contenido;
 	private String tipoDocumento;
 	private String titulo;
-	private Rectangle tamanoPagina;
 	private Date fechaCreacion;
 	
 	public String getContenido() {
@@ -49,29 +43,12 @@ public class DTO_Documento {
 		titulo = pTitulo;
 	}
 	
-
-	public Font getFormatoFuenteTitulo() {
-		return formatoFuenteTitulo;
-	}
-
-	public void setFormatoFuenteTitulo(Font pFormatoFuenteTitulo) {
-		this.formatoFuenteTitulo = pFormatoFuenteTitulo;
-	}
-
 	public String getAutor() {
 		return autor;
 	}
 
 	public void setAutor(String pAutor) {
 		this.autor = pAutor;
-	}
-
-	public Rectangle getTamanoPagina() {
-		return tamanoPagina;
-	}
-
-	public void setTamanoPagina(Rectangle pTamanoPagina) {
-		this.tamanoPagina = pTamanoPagina;
 	}
 	
 	public Date getFechaCreacion() {

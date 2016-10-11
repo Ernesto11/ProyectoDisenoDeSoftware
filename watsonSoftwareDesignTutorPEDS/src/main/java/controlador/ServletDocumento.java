@@ -62,21 +62,16 @@ public class ServletDocumento extends HttpServlet {
    	 ServletOutputStream os = response.getOutputStream();
    	 
    	 String tipoDocumento = request.getParameter("comboFormatos");
- 	String pregunta = request.getParameter("pregunta");
- 	String respuestas =  request.getParameter("respuestas");
+   	 String pregunta = request.getParameter("pregunta");
+   	 String respuestas =  request.getParameter("respuestas");
    	 
    	 DTO_Documento DTO_nuevoDocumento = new DTO_Documento();
    	 DTO_nuevoDocumento.setAutor("Watson Tutor: Diseño de Software");
-   	 
    	 DTO_nuevoDocumento.setTipoDocumento(tipoDocumento);
    	 
    	 if(tipoDocumento.equals("PDF"))
    	 {	
-   		DTO_nuevoDocumento.setContenido("Pregunta: "+ pregunta + "\n\n"+" Respuestas: "+"\n" + respuestas );
-   		 Font fuenteTitulo = new Font(FontFamily.TIMES_ROMAN, 18, Font.BOLD, new BaseColor(0, 0, 0));
-   		 DTO_nuevoDocumento.setFormatoFuenteTitulo(fuenteTitulo);
-   		 DTO_nuevoDocumento.setTamanoPagina(PageSize.LETTER);
-   		 
+   		DTO_nuevoDocumento.setContenido("Pregunta: "+ pregunta + "\n\n"+" Respuestas: "+"\n" + respuestas );	 
    		 PDF nuevoDocumento = (PDF)ControladorWeb.solicitudCrearDocumento(DTO_nuevoDocumento);
    		 
    		response.setContentType("application/pdf"); 
@@ -90,10 +85,10 @@ public class ServletDocumento extends HttpServlet {
    	    	 doc.addAuthor(nuevoDocumento.getAutor());
    		     doc.addCreationDate();
    		     doc.addTitle("Documento "+nuevoDocumento.getAutor());
-   		     doc.setPageSize(nuevoDocumento.getTamanoPagina());
+   		     doc.setPageSize(PageSize.LETTER);
    		     doc.open();
 
-   		     doc.add( new Paragraph(nuevoDocumento.getTitulo()+"\n\n", fuenteTitulo));
+   		     doc.add( new Paragraph(nuevoDocumento.getTitulo()+"\n\n"));
    		     doc.add( new Paragraph(nuevoDocumento.getContenido()));
    		     doc.close(); 
 
@@ -116,7 +111,6 @@ public class ServletDocumento extends HttpServlet {
 		TXT nuevoDocumento = (TXT)ControladorWeb.solicitudCrearDocumento(DTO_nuevoDocumento);
 		os.print(nuevoDocumento.getTitulo());
 		os.println("\n\r\n\r");
-		
 		os.print(nuevoDocumento.getContenido());
    		os.flush();
    		os.close();

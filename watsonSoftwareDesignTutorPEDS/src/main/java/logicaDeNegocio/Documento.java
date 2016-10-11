@@ -17,7 +17,7 @@ public abstract class Documento {
 	protected String contenido;
 	protected Date fechaCreacion;
 	protected String tipoDocumento;
-	private String autor;
+	protected String autor;
 	
 	
 	/**
